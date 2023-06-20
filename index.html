@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendiendo Flexbox</title>
+    <style>
+        body, * {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+
+        
+        .info{
+            background-color: bisque;
+            padding: 5rem;
+            margin-top: 5rem;
+        }
+
+        li { margin:1rem 0}
+
+        /* FLEXBOX */
+
+        .container{
+            background-color: #333;
+            height: 30vh;
+
+            /*PROPIEDADES APCLIADAS AL ELEMENTO PADRE*/
+
+            /*display*/
+            display: flex; /* por defecto*/
+            display: inline-flex;
+            display: flex;
+
+            /*direction*/
+            flex-direction: row; /*por defecto*/
+            flex-direction: row-reverse;
+            flex-direction: column;
+            flex-direction: column-reverse;
+            flex-direction: row;
+
+            /*wrap*/
+            flex-wrap: nowrap; /*por defecto*/
+            flex-wrap: wrap;
+            flex-wrap: wrap-reverse;
+            flex-wrap: wrap;
+
+            /*flow*/
+            flex-flow: row wrap; /*shorthand*/
+            flex-flow: row nowrap;
+            flex-flow: row-reverse wrap;
+            flex-flow: row-reverse nowrap;
+            flex-flow: column wrap;
+            flex-flow: column nowrap;
+            flex-flow: column-reverse wrap;
+            flex-flow: column-reverse nowrap;
+            flex-flow: row wrap;
+
+            /*justify-content*/
+            justify-content: flex-start; 
+            justify-content: center;
+            justify-content: flex-end;
+            justify-content: space-between;
+            justify-content: space-around;
+            justify-content: space-evenly;
+            justify-content: flex-start;
+
+            /*align-items*/
+            align-items: stretch; /*por defecto*/
+            align-items: flex-start;
+            align-items: center;
+            align-items: flex-end;
+            align-items: baseline;
+            align-items: stretch;
+
+            /*align-content*/
+            align-content: flex-start; /*por defecto*/
+            align-content: center;
+            align-content: flex-end;
+            align-content: space-between;
+            align-content: space-around;
+            align-content: space-evenly;
+            align-content: stretch; 
+            align-content: flex-start; 
+
+
+            /*gap*/
+            gap: 0; /*por defecto*/
+            gap: 1rem; 
+            gap: 1rem 2rem; /*row-gap column-gap*/
+            row-gap: .5rem;
+            column-gap: .5rem;
+            gap: 0;
+        }
+
+        .item {
+            background-color: #666;
+            border: medium solid #ccc;
+            width: 20%;
+            height: 20%;
+        }
+
+        /*PROPIEDADES APLICADAS AL ELEMENTO HIJO*/
+
+        /* para entender mejor la lógica de flex-grow se establecen ancho de la caja padre e hijos en px fijos.*/
+        .container-2{
+            background-color: #47bd19;
+            height: 30vh;
+            width: 1000px;
+            display: flex; /*todas las propiedades de flex por defecto*/
+        }
+
+        .box1 {
+            background-color: #a5fc6b;
+            border: medium solid #18750c;
+            width: 100px;
+
+            /* flex-grow*/
+            flex-grow: 0; /*por defecto*/
+            flex-grow: 1;
+            flex-grow: 0;
+        }
+
+        .box1-2 {
+            flex-grow: 2;
+        }
+
+        /* para entender mejor la lógica de flex-shrink no se establecen anchos a los elementos.*/
+        .container-3{
+            background-color: #df731a;
+            height: 30vh;
+            display: flex; /*todas las propiedades de flex por defecto*/
+        }
+
+        .box2 {
+            background-color: #f5a54a;
+            border: medium solid #b8600e;
+
+            /*flex-shrink*/
+            flex-shrink: 1; /*por defecto*/
+            flex-shrink: 0;
+            flex-shrink: 1;
+        }
+
+        .box2-2 {
+            flex-shrink: 2;
+        }
+
+        /* para entender mejor la lógica de flex-basis se puede probar de añadir la altura en px y flex en columna*/
+        .container-4{
+            background-color: #1ab1df;
+            height: 400px;
+            display: flex; /*todas las propiedades de flex por defecto*/
+            flex-direction: row;
+        }
+
+        .box3 {
+            background-color: #66e4f5;
+            border: medium solid #1e52ff;
+
+            /*flex-basis*/
+            flex-basis: auto; /*por defecto*/
+            flex-basis: 100px;
+
+            flex: 0 1 auto; /*shorthand de grow, shrink y basis */
+        }
+
+        /*aplicamos el orden y alineación de los hijos */
+        .container-5{
+            background-color: #dfbb1a;
+            height: 30vh;
+            display: flex; /*todas las propiedades de flex por defecto*/
+
+        }
+
+        .box4 {
+            background-color: #e7f566;
+            border: medium solid #c0bd07;
+            
+            /*order*/
+            order: 0; /*por defecto*/
+
+            /*align-self*/
+            align-self: stretch; /*por defecto*/
+        }
+
+        .box4-2 {
+            order: 1; 
+            align-self: center;
+        }
+
+        .box4-1 {
+            align-self: flex-start;
+        }
+
+        .box4-3 {
+            align-self: flex-end;
+        }
+
+        .box4-2 {
+            align-self: center;
+        }
+
+        .box4-5 {
+            align-self: baseline;
+        }
+  
+
+    </style>
+</head>
+<body>
+    <!--flexbox a los elementos padre-->
+    <section class="container">
+        <article class="item">Flex Item 1</article>
+        <article class="item">Flex Item 2</article>
+        <article class="item">Flex Item 3</article>
+    </section>
+    <br>
+    <section class="container">
+        <article class="item">Flex Item 1</article>
+        <article class="item">Flex Item 2</article>
+        <article class="item">Flex Item 3</article>
+        <article class="item">Flex Item 4</article>
+        <article class="item">Flex Item 5</article>
+        <article class="item">Flex Item 6</article>
+        <article class="item">Flex Item 7</article>
+        <article class="item">Flex Item 8</article>
+        <article class="item">Flex Item 9</article>
+        <article class="item">Flex Item 10</article>
+        <article class="item">Flex Item 11</article>
+        <article class="item">Flex Item 12</article>
+        <article class="item">Flex Item 13</article>
+        <article class="item">Flex Item 14</article>
+        <article class="item">Flex Item 15</article>
+        <article class="item">Flex Item 16</article>
+        <article class="item">Flex Item 17</article>
+        <article class="item">Flex Item 18</article>
+        <article class="item">Flex Item 19</article>
+    </section>
+    <br>
+    <!--flexbox a los elementos hijos-->
+    <section class="container-2">
+        <article class="box1 box1-1">Flex Item 1</article>
+        <article class="box1 box1-2">Flex Item 2</article>
+        <article class="box1 box1-3">Flex Item 3</article>
+    </section>
+    <section class="container-3">
+        <article class="box2 box2-1">Flex Item 1</article>
+        <article class="box2 box2-2">Flex Item 2</article>
+        <article class="box2 box2-3">Flex Item 3</article>
+    </section>
+    <section class="container-4">
+        <article class="box3 box3-1">Flex Item 1</article>
+        <article class="box3 box3-2">Flex Item 2</article>
+        <article class="box3 box3-3">Flex Item 3</article>
+    </section>
+    <section class="container-5">
+        <article class="box4 box4-1">Flex Item 1</article>
+        <article class="box4 box4-2">Flex Item 2</article>
+        <article class="box4 box4-3">Flex Item 3</article>
+        <article class="box4 box4-4">Flex Item 4</article>
+        <article class="box4 box4-5">Flex Item 5</article>
+    </section>
+    <div class="info">
+        <p><b>Guía</b> https://css-tricks.com/snippets/css/a-guide-to-flexbox/</p>
+        <br>
+        <p>Flexbox aplicado al elemento padre</p>
+        <ol>
+            <li>La disposición de un elemento con la propiedad <b>'display'</b> con el valor 'flex' es de tipo bloque.</li>
+            <li>Si queremos que los contenedores estén uno al lado del otro hay que indicar el valor 'inline-flex'.</li>
+            <li>La <b>dirección</b> de flex es de tipo fila (row) por defecto</li>
+            <li>Para cambiar las direcciones hay 4 posibilidades
+                <ul>
+                    <li>row. Coloca los elementos en fila.</li>
+                    <li>row-reverse. Colocla los elementos en fila inversa.</li>
+                    <li>column. Coloca los elementos en columna.</li>
+                    <li>column-reverse. Coloca los elementos en columna en orden inverso.</li>
+                </ul>
+                Estas propiedades a parte de cambiar el orden de los elementos, situan el contenedor al final de la fila o la columna.
+            </li>
+            <li>La propiedad <b>'flex-wrap'</b> permite decidir si todos los elementos se situan uno al lado del otro (o encima del otro) o pueden saltar si no caben en la misma fila o columna. </li>
+            <li>Si el elemento interior de la caja tiene un ancho específico no tendrá en cuenta este ancho si hay muchos elementos y no caben.
+                Ej: en un contenedor hay 3 elementos, y se aplica un 20% de ancho, entonces sí aplica, pero si hay 15 elementos con un ancho del 20%, no lo tiene en cuenta, porque nowrap indica que deben estar todos en una fila, y al ser 15 elementos del 20% no cabrían, por tanto, no lo aplica. </li>
+            <li>El comportamiento anterior se puede cambiar indicando el valor 'wrap', entonces los elementos tienen el tamaño indicado y van saltando de línea si no caben. (o de columna, si la dirección indicada es columna).</li>
+            <li>Para alienar los elementos dentro del contenedor padre en el eje X se utiliza la propiedad <b>'justify-content'</b>. Depende del valor indicado el contenido se situará al inicio de la fila, al centro, al final, o ser repartirá de diversas formas de manera igual.</li>
+            <li>La diferencia entre 'space-between', 'space-around' y 'space-evenly' es que el primero no deja espacios al principio y final de la caja. El segundo deja la mitad del espacio al inicio y final en comparación con el espacio que hay entre los elementos. Y el tercero deja el mismo espacio al inicio y al final que el que hay entre los elementos.</li>
+            <li>Ojo, Si está indicado 'column' como dirección, 'justify-content' situará los elementos al inicio de la columna, en el medio, etc., como si trabajara en el eje Y en lugar del X.</li>
+            <li>Para alienar los elementos dentro del contenedor padre en el eje Y se utiliza la propiedad <b>'align-items'. </b></li>
+            <li>Ojo, Si está indicada la dirección 'column', con 'align-items' los elementos se moverán respecto el eje X, aunque en principio podríamos pensar que se deberían mover según el eje Y. De esto se encarga 'justify-content', como hemos dicho. </li>
+            <li>Con el valor 'stretch', los elementos se alienan en relación con la línea de base del texto .</li>
+            <li>Otra propiedad para mover los elementos dentro del contenedor es 'align-content', similar a 'justify-content', pero trabaja en el eje Y. Esta propiedad no funciona si está indicado 'nowrap'</li>
+            <li>Con esta propidad, a diferencia de 'align-items', se pueden separar los elementos con 'space-between, around y evently' en el eje Y.</li>
+            <li>Flexbox permite indicar la separación entre los elementos con la propiedad 'gap', 'row-gap' y 'column-gap'.</li>
+        </ol>
+        <p>Flexbox aplicado a los elementos hijos</p>
+        <ol>
+            <li>Hay tres propiedades que se aplican directamente a los elementos hijos de un contenedor 'flex'.</li>
+            <li>La primera es <b>'flex-grow'</b>, y se aplica cuando en la caja padre hay espacio de sobra y los elementos tienen la habilidad de crecer. Por defecto es 0, no acepta valores negativos. Si todos tienen el mismo valor se repatiran ocupando todo el espacio.</li>
+            <li>Para entenderlo con un ejemplo. Si la caja padre tiene una anchura de 1000px y los 3 elementos 100px cada uno, están ocupando 300px, sobran 700px. Si aplicamos 'flex-grow' 1 a los tres elementos se reparte 700 / 3 = 233,34p + los 100px de cada uno, 333,34px, y ocuparan todo el espacio, 1000px. </li>
+            <li>Ahora, si a un elemento le indicamos un 'flex-grow' de valor 2, entonces 700 se divide entre 4 (1+1+2), el cual son 175px, por tanto, a un elemento le suma 175px a los 100px que ya tiene, son 275px, al otro también, y al que queda le suma dos veces 175px, que son, 350px, más los 100px que tiene, tendrá una anchura total de 450px. En total son 275px + 275px + 450px, como se puede apreciar, este elemento con 'flex-grow' de valor 2 no está ocupando el doble que los otros elementos, sino ocuparía 550px, y ocupa 450px.</li>
+            <li>Por último, puedes probar que pasa si a los tres elementos le indicamos un 'grow-flex' de 0, o lo que es lo mismo, no indicarles 'flex-grow', y a un elemento le indicamos un 'flex-grow' de valor 2, entonces los que no tienen indicado nada ocupan los 100px, su espacio, y el que tiene indicado un 'flex-grow' ocupa todo el espacio restante, 800px.</li>
+            <li>Otra propiedad es <b>'flex-shrink', esta es lo contrario de lo anterior, cuando el padre no tenga espacio sobrante, es la habilidad de encogerse, y su valor por defecto es 1. Tampoco acepta valores negativos.</b></li>
+            <li>Si le indicamos un valor de 0, el elemento pierde la capacidad de encogerse automáticamente cuando se reduce el tamaño de la caja. Seguramente esto provacará la aparición del scroll-horizontal </li>
+            <li>Siguiendo el ejemplo de tres elementos, cuando a un elemento concreto le indicamos por ejemplo un 'flex-shrink' con valor 2, le estamos indicando que debe enconjerse el doble que los otros dos elementos. </li>
+            <li>Igual que en el caso anterior, esto no quiere decir que la anchura del que tiene un valor de 'shrink' 2 sea la mitad de los otros dos elementos. Para hacer el cáculo, comprobamos que el ancho de cada elemento por defecto es de 76.98px cuando el elemento padre es de 230.94px. Si le restamos 215px al padre (por ejemplo, es una reducción aleatoria), nos queda que cada elemento debe estrecharse 230.94-215 = 15.94px, pero si a un elemento le indicamos un 'shrink' de valor 2, si dividimos 15.94 / 4 a cada uno le tocaría perder 3,98px. Por tanto, el ítem número 1 quedaría en 76.98 - 3.98px = 73px, el número 2 también, y el número 3 sería 76.98px - (3.98*2)  = 69.02px.  </li>
+            <li>La tercera propiedad es 'flex-basis', y se puede entender como el tamaño del elemento dentro de la línea de la caja flexbox, pero hay que diferenciar, si la caja tiene dirección fila, 'flex-basis' representa la anchura del elemento (width) pero si la caja tiene dirección columna, 'flex-basis' representa la altura (height)</li>
+            <li>El valor por defecto es 'auto', pero por ejemplo se puede establecer un 'flex-basis' de 100px para cada elemento, entonces los tres elementos tendran una anchura de 100px cada uno. Si tenemos especificada la propiedad width al elemento, no la tomará en cuenta, porque para flexbox tiene prioridad 'flex-basis'.</li>
+            <li>Si cambiamos en el elemento padre de 'row' a 'column' la dirección, entonces el 'flex-basis' del elemento pasará a ser de 100px de altura, en lugar de 100px de ancho. </li>
+            <li>Hay otra propiedad que se puede aplicar a los elementos hijos, y es 'order', la cual sirver para ordenar los elementos. Podemos indicarle que el último debe mostrase al inicio por ejemplo, o al revés. Es útil para utilizar la maquetación responsiva en móviles.</li>
+            <li>Esta propiedad acepta valores negativos y hay que tener en cuenta que un valor menor se mostrará antes que uno mayor.</li>
+            <li>Un ejemplo, si tenemos 5 elementos, todos con valor 0 (por defecto) y al segundo elemento le indicamos un valor de orden 1, éste se posicionará el último de todos, porque todos tienen 0 y es menor que 1. Si le indicas un valor de -1, se posicionará el primero. </li>
+            <li>La última propiedad de los elementos hijos es 'align-self', y nos sirve para indicar como debe alinearse este elemento dentro de la caja padre. Sboreescribe el valor que tenga 'align-item'.</li>
+
+        </ol>
+    </div>
+      
+</body>
+</html>

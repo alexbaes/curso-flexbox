@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplos Prácticos de Flexbox</title>
+    <style>
+        *,
+        *::before,
+        *::after{
+            box-sizing: border-box;
+            margin:0;
+            padding: 0;
+        }
+
+        body{
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+
+        main {flex-grow: 1;}
+
+        .titulares {
+            background-color: #222;
+            color: #eee;
+            padding: 1rem;
+        }
+
+        .header{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo{font-size: 2rem;}
+
+        .menu ul { list-style-type: none; }
+
+        .menu ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
+        .menu ul li a:hover {color: #f83737;}
+
+        .hero-image{
+            min-height: 100vh;
+            background-image: url('https://placeimg.com/1366/720/animals');
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+
+        .hero-image div{
+            min-height: inherit;
+            background-color: rgba(0,0,0,.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-image h1 {
+            font-size: 5vw;
+        }
+
+        .flex-responsive {
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        /*con la propiedad flex le indicamos que los items pueden crecer, pueden encogerse y un mínimo de ancho de 200px. Si sobra ancho, 
+        como hemos dicho que el flex-grow es 1 ocuparán todo el espacio disponible. De esta manera, una pantalla de menos de 400px tendrá 
+        una columna, cuando pase de 400px, como hemos indicado 200px mínimo, se colocará en 2 columnas, cuando llegue a 600px serán 3 columnas, etc.*/
+        .flex-responsive-item{
+            flex: 1 0 200px;
+            border: 1px solid;
+        }
+
+        @media screen and (min-width: 1024px){
+            .header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .menu ul{ display: flex;}
+
+            .menu ul li {padding:.5rem; color: white}
+
+            .flex-container{
+                display: flex;
+                align-items: center;
+            }
+
+            .flex-item{flex: 0 0 50%}
+
+            /*Una opción para invertir text-imagen en desktop es cambiando el orden del elemento hijo*/
+            .flex-order-1{order: 1;}
+
+            /*otra opción es indicarle al elemento padre que la dirección de la fila es al revés*/
+            .flex-row-reverse{flex-direction: row-reverse;}
+        }
+    </style>
+</head>
+<body>
+    <!--En este ejercicio se ha creado:
+        1.un 'sticky' footer, para mantenerlo siempre al final de la página.
+        2.una cabecera responsibe, con Flexbox se posiciona el menú en versión móbil y desktop.
+        3.una hero-image, con background-image y centrando el texto en medio de la sección.
+        4.un cambio de orden en los elementos de una caja padre para invertirlos en versión desktop.
+        5.una sección responsive sin la necesidad de media-querys con Flexbox.
+    -->
+    <header class="titulares header">
+        <div class="logo">Logo</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Sección1</a></li>
+                <li><a href="#">Sección2</a></li>
+                <li><a href="#">Sección3</a></li>
+                <li><a href="#">Sección4</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article class="hero-image">
+            <div>
+                <h1>Flebox is fuckin'COOL !!!</h1>
+            </div>
+        </article>
+        <section class="flex-container">
+            <article class="flex-item">
+                <h2>Título</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate odit sapiente repudiandae assumenda laudantium voluptatem fuga, maiores enim voluptatibus ad.</p>
+            </article>
+            <article class="flex-item">
+                <img src="https://placeimg.com/400/400/people">
+            </article>
+        </section>
+        <section class="flex-container flex-row-reverse">
+            <article class="flex-item ">
+                <h2>Título</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate odit sapiente repudiandae assumenda laudantium voluptatem fuga, maiores enim voluptatibus ad.</p>
+            </article>
+            <article class="flex-item">
+                <img src="https://placeimg.com/400/400/architecture">
+            </article>
+        </section>
+        <section class="flex-responsive">
+            <article class="flex-responsive-item">Item Responsivo 1</article>
+            <article class="flex-responsive-item">Item Responsivo 2</article>
+            <article class="flex-responsive-item">Item Responsivo 3</article>
+            <article class="flex-responsive-item">Item Responsivo 4</article>
+            <article class="flex-responsive-item">Item Responsivo 5</article>
+            <article class="flex-responsive-item">Item Responsivo 6</article>
+            <article class="flex-responsive-item">Item Responsivo 7</article>
+            <article class="flex-responsive-item">Item Responsivo 8</article>
+            <article class="flex-responsive-item">Item Responsivo 9</article>
+            <article class="flex-responsive-item">Item Responsivo 10</article>
+            <article class="flex-responsive-item">Item Responsivo 11</article>
+            <article class="flex-responsive-item">Item Responsivo 12</article>
+            <article class="flex-responsive-item">Item Responsivo 13</article>
+            <article class="flex-responsive-item">Item Responsivo 14</article>
+            <article class="flex-responsive-item">Item Responsivo 15</article>
+            <article class="flex-responsive-item">Item Responsivo 16</article>
+            <article class="flex-responsive-item">Item Responsivo 17</article>
+            <article class="flex-responsive-item">Item Responsivo 18</article>
+            <article class="flex-responsive-item">Item Responsivo 19</article>
+        </section>
+    </main>
+    <footer class="titulares">
+        <h2>Sticky Footer</h2>
+    </footer>
+</body>
+</html>
